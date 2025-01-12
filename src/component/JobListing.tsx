@@ -1,11 +1,13 @@
+import { filterUpdater } from '../types/filters';
 import { JobListingType } from '../types/jobs';
 import styles from './JobListing.module.css';
 
 type JobListingProps = {
   job: JobListingType;
+  updateFilter: filterUpdater;
 };
 
-export default function JobListing({ job }: JobListingProps) {
+export default function JobListing({ job, updateFilter }: JobListingProps) {
   return (
     <div className={styles.listingContainer}>
       <div className={styles.logo}>
@@ -36,13 +38,17 @@ export default function JobListing({ job }: JobListingProps) {
       </div>
       {/* todo: add filtering functions */}
       <div className={styles.filters}>
-        <div>{job.role}</div>
-        <div>{job.level}</div>
+        <div onClick={() => updateFilter('add', job.role)}>{job.role}</div>
+        <div onClick={() => updateFilter('add', job.level)}>{job.level}</div>
         {job.languages.map((language, index) => (
-          <div key={index}>{language}</div>
+          <div key={index} onClick={() => updateFilter('add', language)}>
+            {language}
+          </div>
         ))}
         {job.tools.map((tool, index) => (
-          <div key={index}>{tool}</div>
+          <div key={index} onClick={() => updateFilter('add', tool)}>
+            {tool}
+          </div>
         ))}
       </div>
     </div>

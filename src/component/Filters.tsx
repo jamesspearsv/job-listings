@@ -1,17 +1,25 @@
-import Filter from './Filter';
+import { filterUpdater } from '../types/filters';
+import FilterTab from './FilterTab';
 import styles from './Filters.module.css';
 
 // todo: add filter clearing functionality
 
-export default function Filters() {
-  const filters = ['react', 'frontend', 'JavaScript'];
+type FiltersProps = {
+  filters: string[];
+  updateFilters: filterUpdater;
+};
 
+export default function Filters({ filters, updateFilters }: FiltersProps) {
   return (
     <div className={styles.filtersContainer}>
       {filters.map((filter, index) => {
-        return <Filter key={index} filter={filter} />;
+        return (
+          <FilterTab key={index} filter={filter} updateFilter={updateFilters} />
+        );
       })}
-      <button className={styles.clear}>Clear</button>
+      <button className={styles.clear} onClick={() => updateFilters('clear')}>
+        Clear
+      </button>
     </div>
   );
 }
