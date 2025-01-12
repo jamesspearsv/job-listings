@@ -7,6 +7,7 @@ type JobListingProps = {
   updateFilter: filterUpdater;
 };
 
+// todo: add accent bar for new and featured postings
 export default function JobListing({ job, updateFilter }: JobListingProps) {
   return (
     <div className={styles.listingContainer}>
