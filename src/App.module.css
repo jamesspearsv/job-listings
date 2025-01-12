@@ -8,7 +8,8 @@
 .main {
   width: var(--content-width);
   margin: auto;
-  margin-top: 8rem;
+  margin-top: 2.5rem;
+  transition: margin-top 200ms ease-in-out;
 }
 
 @media screen and (max-width: 768px) {

@@ -103,7 +103,10 @@ function App() {
         <Filters filters={filters} updateFilters={updateFilters} />
       )}
       {/* todo: dynamically adjust main margin based on if filters are rendered */}
-      <main className={styles.main}>
+      <main
+        className={styles.main}
+        style={filters.active ? { marginTop: '4rem' } : {}}
+      >
         {jobs &&
           jobs.map((job, index) => {
             // early return if job does not match any of the filters
