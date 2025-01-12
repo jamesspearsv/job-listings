@@ -17,6 +17,10 @@
   --weight-bold: 700;
 }
 
+html {
+  background-color: var(--color-background-cyan);
+}
+
 body {
   font-size: 15px;
   font-family: 'League Spartan', sans-serif;

@@ -37,7 +37,9 @@ function App() {
   return (
     <>
       <header className={styles.header}></header>
-      <main>{jobs && jobs.map((job, index) => <JobListing job={job} />)}</main>
+      <main>
+        {jobs && jobs.map((job, index) => <JobListing key={index} job={job} />)}
+      </main>
     </>
   );
 }

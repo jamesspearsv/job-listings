@@ -8,22 +8,33 @@ type JobListingProps = {
 export default function JobListing({ job }: JobListingProps) {
   return (
     <div className={styles.listingContainer}>
-      <img src={job.logo} alt={`${job.company} logo`} />
+      <div className={styles.logo}>
+        <img src={job.logo} alt={`${job.company} logo`} />
+      </div>
       <div className={styles.jobInfo}>
-        <div>
-          <p>{job.company}</p>
-          {job.new && <p>new</p>}
-          {job.featured && <p>featured</p>}
+        <div className={styles.flairs}>
+          <p className={styles.company}>{job.company}</p>
+          {job.new && (
+            <div className={`${styles.flair} ${styles.newFlair}`}>
+              <p>NEW!</p>
+            </div>
+          )}
+          {job.featured && (
+            <div className={`${styles.flair} ${styles.featuredFlair}`}>
+              <p>FEATURED</p>
+            </div>
+          )}
         </div>
         <div>
-          <h3>{job.position}</h3>
+          <h2 className={styles.position}>{job.position}</h2>
         </div>
-        <div>
+        <div className={styles.details}>
           <p>{job.postedAt}</p>
           <p>{job.contract}</p>
           <p>{job.location}</p>
         </div>
       </div>
+      {/* todo: add filtering functions */}
       <div className={styles.filters}>
         <div>{job.role}</div>
         <div>{job.level}</div>

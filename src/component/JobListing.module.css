@@ -1,19 +1,103 @@
 .listingContainer {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
+  background-color: white;
+  margin: 1rem;
+  padding: 2rem;
+  border: none;
+  border-radius: 5px;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 88px;
 }
 
 .jobInfo {
   div {
     display: flex;
+    align-items: center;
+  }
+
+  .company {
+    color: var(--color-desaturated-dark-cyan);
+    font-weight: var(--weight-bold);
+  }
+
+  .position:hover {
+    color: var(--color-desaturated-dark-cyan);
+    cursor: pointer;
+  }
+
+  .flairs {
+    gap: 0.75rem;
+  }
+
+  .flair {
+    font-size: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 100px;
+    text-align: center;
+    align-content: center;
+    color: white;
+    font-weight: var(--weight-normal);
+  }
+
+  .newFlair {
+    background-color: var(--color-desaturated-dark-cyan);
+  }
+
+  .featuredFlair {
+    background-color: var(--color-dark-grayish-cyan);
+  }
+
+  .details {
+    color: var(--color-grayish-cyan);
+    gap: 1rem;
+
+    p {
+      position: relative;
+    }
+
+    p:not(:last-child)::after {
+      position: absolute;
+      content: '';
+      right: -10px;
+      top: 42%;
+      background-color: var(--color-grayish-cyan);
+      height: 3px;
+      width: 3px;
+      border: none;
+      border-radius: 100%;
+    }
   }
 }
 
 .filters {
   margin-left: auto;
   display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 
   div {
     background-color: var(--color-filter-cyan);
+    color: var(--color-desaturated-dark-cyan);
+    font-weight: var(--weight-bold);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    align-content: center;
+  }
+
+  div:hover {
+    background-color: var(--color-desaturated-dark-cyan);
+    color: white;
   }
 }
