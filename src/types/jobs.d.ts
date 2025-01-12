@@ -14,4 +14,4 @@ export type JobListing = {
   tools: string[];
 };
 
-export type Response = JobListing[];
+export type JobsResponse = JobListing[];
