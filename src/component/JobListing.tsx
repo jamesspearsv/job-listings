@@ -36,17 +36,23 @@ export default function JobListing({ job, updateFilter }: JobListingProps) {
           <p>{job.location}</p>
         </div>
       </div>
-      {/* todo: add filtering functions */}
       <div className={styles.filters}>
-        <div onClick={() => updateFilter('add', job.role)}>{job.role}</div>
-        <div onClick={() => updateFilter('add', job.level)}>{job.level}</div>
+        <div onClick={() => updateFilter('add', 'role', job.role)}>
+          {job.role}
+        </div>
+        <div onClick={() => updateFilter('add', 'level', job.level)}>
+          {job.level}
+        </div>
         {job.languages.map((language, index) => (
-          <div key={index} onClick={() => updateFilter('add', language)}>
+          <div
+            key={index}
+            onClick={() => updateFilter('add', 'languages', language)}
+          >
             {language}
           </div>
         ))}
         {job.tools.map((tool, index) => (
-          <div key={index} onClick={() => updateFilter('add', tool)}>
+          <div key={index} onClick={() => updateFilter('add', 'tools', tool)}>
             {tool}
           </div>
         ))}

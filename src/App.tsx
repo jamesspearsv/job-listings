@@ -3,11 +3,19 @@ import { JobsResponseType } from './types/jobs';
 import styles from './App.module.css';
 import JobListing from './component/JobListing';
 import Filters from './component/Filters';
-import { filterUpdater } from './types/filters';
+import { filterUpdater, filterType } from './types/filters';
+import { checkFilter } from './lib/checkFilter';
 
 function App() {
   const [jobs, setJobs] = useState<JobsResponseType | null>(null);
-  const [filters, setFilters] = useState<string[]>([]);
+
+  const [filters, setFilters] = useState<filterType>({
+    active: false,
+    role: [],
+    level: [],
+    languages: [],
+    tools: [],
+  });
 
   // simulate fetching job listing data from an api
   useEffect(() => {
@@ -16,7 +24,7 @@ function App() {
 
     async function fetchJobs() {
       // simulate API call delay
-      await new Promise((resolve) => setTimeout(resolve, Math.random() * 5000));
+      await new Promise((resolve) => setTimeout(resolve, Math.random() * 2000));
 
       // get json data using fetch
       try {
@@ -37,39 +45,74 @@ function App() {
     };
   }, []);
 
-  const updateFilters: filterUpdater = (action, value) => {
-    if (action === 'add') {
-      const newFilter = [...filters];
-      if (value && !filters.includes(value)) {
-        newFilter.push(value);
-        setFilters(newFilter);
-      }
+  const updateFilters: filterUpdater = (action, filter, value) => {
+    const newFilters = { ...filters };
+
+    if (action === 'add' && value && filter) {
+      // prevent duplicate filters
+      if (filters[filter].includes(value)) return;
+
+      newFilters[filter].push(value);
+      newFilters.active = true;
+      setFilters(newFilters);
     }
 
-    if (action === 'remove') {
-      if (value && filters.includes(value)) {
-        const newFilter = filters.filter((filter) => filter !== value);
-        setFilters(newFilter);
+    if (action === 'remove' && filter && value) {
+      const validFilters = Object.keys(filters);
+      if (validFilters.includes(filter)) {
+        // remove given filter value from respective filter
+        newFilters[filter] = newFilters[filter].filter(
+          (element) => element !== value
+        );
+
+        // hack: there has to be a better way to do this
+        if (
+          newFilters.languages.length === 0 &&
+          newFilters.level.length === 0 &&
+          newFilters.role.length === 0 &&
+          newFilters.tools.length === 0
+        ) {
+          setFilters({
+            active: false,
+            role: [],
+            level: [],
+            languages: [],
+            tools: [],
+          });
+        } else {
+          setFilters(newFilters);
+        }
       }
     }
 
     if (action === 'clear') {
-      setFilters([]);
+      setFilters({
+        active: false,
+        role: [],
+        level: [],
+        languages: [],
+        tools: [],
+      });
     }
   };
 
   return (
     <>
       <header className={styles.header}></header>
-      {filters.length > 0 && (
+      {filters.active && (
         <Filters filters={filters} updateFilters={updateFilters} />
       )}
       {/* todo: dynamically adjust main margin based on if filters are rendered */}
       <main className={styles.main}>
         {jobs &&
-          jobs.map((job, index) => (
-            <JobListing key={index} job={job} updateFilter={updateFilters} />
-          ))}
+          jobs.map((job, index) => {
+            // early return if job does not match any of the filters
+            if (filters.active && !checkFilter(filters, job)) return null;
+
+            return (
+              <JobListing key={index} job={job} updateFilter={updateFilters} />
+            );
+          })}
       </main>
     </>
   );
