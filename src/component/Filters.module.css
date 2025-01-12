@@ -1,0 +1,27 @@
+.filtersContainer {
+  position: absolute;
+  left: calc((100% - var(--content-width)) / 2);
+  top: 6rem;
+  width: var(--content-width);
+  background-color: white;
+  height: 4.5rem;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  button {
+    margin-left: auto;
+    background-color: transparent;
+    border: none;
+    color: var(--color-desaturated-dark-cyan);
+  }
+
+  button:hover {
+    text-decoration: underline;
+    font-weight: var(--weight-bold);
+  }
+}

@@ -15,6 +15,12 @@
   /* typography */
   --weight-normal: 500;
   --weight-bold: 700;
+
+  /* spacing */
+  --content-width: 70%;
+
+  /* misc */
+  /* todo: add box-shadow property */
 }
 
 html {

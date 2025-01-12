@@ -5,6 +5,12 @@
   height: 8rem;
 }
 
+.main {
+  width: var(--content-width);
+  margin: auto;
+  margin-top: 8rem;
+}
+
 @media screen and (max-width: 768px) {
   .header {
     background-image: url('./assets/bg-header-mobile.svg');

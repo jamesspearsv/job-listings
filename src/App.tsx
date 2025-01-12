@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { JobsResponseType } from './types/jobs';
 import styles from './App.module.css';
 import JobListing from './component/JobListing';
+import Filters from './component/Filters';
 
 function App() {
   const [jobs, setJobs] = useState<JobsResponseType | null>(null);
@@ -37,7 +38,9 @@ function App() {
   return (
     <>
       <header className={styles.header}></header>
-      <main>
+      <Filters />
+      {/* todo: dynamically adjust main margin based on if filters are rendered */}
+      <main className={styles.main}>
         {jobs && jobs.map((job, index) => <JobListing key={index} job={job} />)}
       </main>
     </>
