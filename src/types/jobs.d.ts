@@ -1,4 +1,4 @@
-export type JobListing = {
+export type JobListingType = {
   id: number;
   company: string;
   logo: string; // image url string
@@ -14,4 +14,4 @@ export type JobListing = {
   tools: string[];
 };
 
-export type JobsResponse = JobListing[];
+export type JobsResponseType = JobListingType[];

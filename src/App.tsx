@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import { JobsResponse } from './types/jobs';
+import { JobsResponseType } from './types/jobs';
+import styles from './App.module.css';
+import JobListing from './component/JobListing';
 
 function App() {
-  const [jobs, setJobs] = useState<JobsResponse | null>(null);
+  const [jobs, setJobs] = useState<JobsResponseType | null>(null);
 
   // simulate fetching job listing data from an api
   useEffect(() => {
@@ -34,7 +36,8 @@ function App() {
 
   return (
     <>
-      <h1>Hello, World!</h1>
+      <header className={styles.header}></header>
+      <main>{jobs && jobs.map((job, index) => <JobListing job={job} />)}</main>
     </>
   );
 }

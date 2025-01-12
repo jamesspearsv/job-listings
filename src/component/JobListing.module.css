@@ -1,0 +1,19 @@
+.listingContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+.jobInfo {
+  div {
+    display: flex;
+  }
+}
+
+.filters {
+  margin-left: auto;
+  display: flex;
+
+  div {
+    background-color: var(--color-filter-cyan);
+  }
+}
