@@ -11,7 +11,7 @@ export default function Filter({ filter }: FilterProps) {
   return (
     <div className={styles.filterContainer}>
       <p>{filter}</p>
-      <button aria-label="Remove filter">
+      <button className={styles.button} aria-label="Remove filter">
         <RemoveIcon />
       </button>
     </div>

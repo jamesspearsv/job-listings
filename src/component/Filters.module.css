@@ -13,14 +13,14 @@
   gap: 1rem;
   align-items: center;
 
-  button {
+  .clear {
     margin-left: auto;
     background-color: transparent;
     border: none;
     color: var(--color-desaturated-dark-cyan);
   }
 
-  button:hover {
+  .clear:hover {
     text-decoration: underline;
     font-weight: var(--weight-bold);
   }

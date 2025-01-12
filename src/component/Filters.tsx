@@ -11,7 +11,7 @@ export default function Filters() {
       {filters.map((filter, index) => {
         return <Filter key={index} filter={filter} />;
       })}
-      <button>Clear</button>
+      <button className={styles.clear}>Clear</button>
     </div>
   );
 }
