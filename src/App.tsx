@@ -24,7 +24,7 @@ function App() {
 
     async function fetchJobs() {
       // simulate API call delay
-      await new Promise((resolve) => setTimeout(resolve, Math.random() * 2000));
+      await new Promise((resolve) => setTimeout(resolve, Math.random() * 3000));
 
       // get json data using fetch
       try {
@@ -106,7 +106,12 @@ function App() {
         className={styles.main}
         style={filters.active ? { transform: 'translateY(3.5rem)' } : {}}
       >
-        {jobs &&
+        {!jobs ? (
+          <div className={styles.loaderContainer}>
+            <h3>Finding some awesome jobs for you...</h3>
+            <div className={styles.loader}></div>
+          </div>
+        ) : (
           jobs.map((job, index) => {
             // early return if job does not match any of the filters
             if (filters.active && !checkFilter(filters, job)) return null;
@@ -114,8 +119,18 @@ function App() {
             return (
               <JobListing key={index} job={job} updateFilter={updateFilters} />
             );
-          })}
+          })
+        )}
       </main>
+      <footer className={styles.footer}>
+        <span>
+          <a href="http://jspears.me">James Spears, V</a>
+        </span>
+        <span>|</span>
+        <span>
+          <a href="https://github.com/jamesspearsv/job-listings">Github</a>
+        </span>
+      </footer>
     </>
   );
 }
