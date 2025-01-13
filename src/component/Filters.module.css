@@ -8,10 +8,17 @@
   padding: 1rem 2rem;
   border: none;
   border-radius: 5px;
-
   display: flex;
-  gap: 1rem;
   align-items: center;
+  gap: 1rem;
+  box-shadow: var(--shadow);
+
+  div {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 
   .clear {
     margin-left: auto;
@@ -23,5 +30,13 @@
   .clear:hover {
     text-decoration: underline;
     font-weight: var(--weight-bold);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .filtersContainer {
+    left: calc((100% - var(--content-width-mobile)) / 2);
+    top: 6rem;
+    width: var(--content-width-mobile);
   }
 }

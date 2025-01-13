@@ -9,11 +9,16 @@
   width: var(--content-width);
   margin: auto;
   margin-top: 2.5rem;
-  transition: margin-top 200ms ease-in-out;
+  transition: transform 200ms ease-in-out;
 }
 
 @media screen and (max-width: 768px) {
   .header {
     background-image: url('./assets/bg-header-mobile.svg');
+  }
+
+  .main {
+    width: var(--content-width-mobile);
+    margin-top: 3.5rem;
   }
 }

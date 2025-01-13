@@ -7,10 +7,13 @@ type JobListingProps = {
   updateFilter: filterUpdater;
 };
 
-// todo: add accent bar for new and featured postings
 export default function JobListing({ job, updateFilter }: JobListingProps) {
   return (
-    <div className={styles.listingContainer}>
+    <div
+      className={`${styles.listingContainer} ${
+        job.new || job.featured ? styles.accented : ''
+      }`}
+    >
       <div className={styles.logo}>
         <img src={job.logo} alt={`${job.company} logo`} />
       </div>
